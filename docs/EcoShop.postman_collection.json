@@ -1,0 +1,114 @@
+{
+  "info": {
+    "name": "EcoShop API",
+    "_postman_id": "2f7c5ce6-e094-4781-b6d4-ecoshop-api-2026",
+    "description": "Postman collection for EcoShop API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"full_name\": \"Alice Green\",\n  \"email\": \"alice@example.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/register",
+          "host": ["{{base_url}}"],
+          "path": ["auth", "register"]
+        }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@ecoshop.test\",\n  \"password\": \"password\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "Products - List",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/products",
+          "host": ["{{base_url}}"],
+          "path": ["products"]
+        }
+      }
+    },
+    {
+      "name": "Cart - Add Item",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_id\": 1,\n  \"quantity\": 2\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/cart",
+          "host": ["{{base_url}}"],
+          "path": ["cart"]
+        }
+      }
+    },
+    {
+      "name": "Orders - Place",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/orders",
+          "host": ["{{base_url}}"],
+          "path": ["orders"]
+        }
+      }
+    },
+    {
+      "name": "Admin - Create Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{admin_token}}" },
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"category_id\": 1,\n  \"name\": \"Compostable Sponge\",\n  \"description\": \"Natural cellulose sponge\",\n  \"price\": 7.9,\n  \"stock\": 40\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/admin/products",
+          "host": ["{{base_url}}"],
+          "path": ["admin", "products"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000/api" },
+    { "key": "token", "value": "" },
+    { "key": "admin_token", "value": "" }
+  ]
+}

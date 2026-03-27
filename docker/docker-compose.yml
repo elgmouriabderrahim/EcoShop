@@ -60,3 +60,18 @@ networks:
 
 volumes:
   pgdata:
+
+
+queue:
+  build:
+    context: ..
+    dockerfile: docker/Dockerfile
+  container_name: laravel_queue
+  working_dir: /var/www
+  volumes:
+    - ../src:/var/www
+  command: php artisan queue:work
+  depends_on:
+    - db
+  networks:
+    - laravel
